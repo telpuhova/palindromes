@@ -1,28 +1,39 @@
 $(document).ready(function(){
-  $(".numbers").submit(function(event) {
+  $("#formOne").submit(function(event) {
     event.preventDefault();
-    var firstnumber = $("input#firstnumber").val();
-    var secondnumber = $("input#secondnumber").val();
 
-    if ((secondnumber < 0) || (0 > firstnumber)) {
-      $("#output").append("negative numbers");
-    } else if (secondnumber < firstnumber){
-      $("#output").append("count by number is larger than the count to numbers");
-    } else if (/[^0-9]/g) {
-      $("#output").append("Not a number");
-    } else {
-      for (var total = 1; total <= firstnumber/secondnumber; total += 1) {
-        number = total * secondnumber;
-        $("#output").append(number + " ");
-      }
-    }
+    var wordInput = $("input#word").val().toLowerCase();
+    var word = wordInput.replace(/[^a-z]/g, '');
 
-    // for (var number = secondnumber; number <= firstnumber; number += secondnumber) {
-    //   number = total * secondnumber;
-    //   $("#output").append(number + " ");
+
+    // var wordsplit = word.split("");
+    // var wordclone = word.split("").reverse();
+    //
+    // for (index = 0; index < word.length; index += 1) {
+    //   if (wordsplit[index] === wordclone[index]) {
+    //     $("#result").text(word + " is a palendrome.")
+    //   } else {
+    //     $("#result").text(word + " is not a palendrome.")
+    //   }
     // }
 
-    $(".output").show();
-    $(".numbers").hide();
-  })
-})
+
+
+    var wordArray = word.split('');
+
+    var ispalindrome = true;
+    for (index = 0; index < wordArray.length; index += 1) {
+      if (wordArray[index] !== wordArray[wordArray.length - index - 1]) {
+        ispalindrome = false;
+        // alert(wordArray[index] + " - " + wordArray[wordArray.length - index - 1]);
+      }
+    }
+    if (ispalindrome) {
+      $("#result").text(wordInput + " is a palendrome.")
+    } else {
+      $("#result").text(wordInput + " is not a palendrome.")
+    }
+
+
+  });
+});
